@@ -1,4 +1,4 @@
-from PySide6.QtWidgets import QApplication, QWidget
+from PySide6.QtWidgets import QApplication, QWidget, QVBoxLayout, QLabel
 from PySide6.QtGui import QKeyEvent
 from PySide6.QtCore import Qt
 import sys
@@ -16,16 +16,37 @@ class FullScreenApp(QWidget):
 
         self.setStyleSheet("background-color: green;")
 
+        self.layout = QVBoxLayout()
+
+        self.central_label = QLabel("Welcome, Welcome !", self)
+        self.central_label.setStyleSheet("color: white; font-size:24px;")
+        self.central_label.setAlignment(Qt.AlignCenter)
+        self.layout.addWidget(self.central_label)
+
+
+        self.setLayout(self.layout)
+
+
+
+
+
+
+
+
+
 
     def keyPressEvent(self, event: QKeyEvent):
         if event.key() == Qt.Key_Escape:
             self.close()
 
 
-app = QApplication(sys.argv)
-
-window = FullScreenApp()
-window.show()
+if __name__ == "__main__":
 
 
-sys.exit(app.exec())
+    app = QApplication(sys.argv)
+
+    window = FullScreenApp()
+    window.show()
+
+
+    sys.exit(app.exec())
