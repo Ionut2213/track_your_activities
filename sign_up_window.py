@@ -1,4 +1,9 @@
-from PySide6.QtWidgets import QDialog, QVBoxLayout, QLabel, QLineEdit, QPushButton
+from PySide6.QtWidgets import QDialog, QVBoxLayout, QLabel, QLineEdit, QPushButton, QMessageBox
+from database import add_user
+
+
+
+
 
 class SignUpWindow(QDialog):
     def __init__(self):
@@ -37,6 +42,14 @@ class SignUpWindow(QDialog):
     def handle_signup(self):
         username = self.user_input.text()
         password = self.password_input.text()
-        print(f"Username: {username}, Password: {password} " )
 
-        self.accept()
+        if not username or not password:
+            QMessageBox.warning(self, "Error", "Please enter both username and password.")
+            return
+
+        if add_user(username, password):
+            QMessageBox.information(self, "Succes", "User registration successfully!")
+            self.accept()
+
+        else:
+            QMessageBox.warning(self, "Error", "Username already exists.Try a new one")

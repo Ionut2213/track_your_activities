@@ -1,6 +1,7 @@
 
-from PySide6.QtWidgets import QDialog, QVBoxLayout, QLabel, QLineEdit, QPushButton
+from PySide6.QtWidgets import QDialog, QVBoxLayout, QLabel, QLineEdit, QPushButton, QMessageBox
 
+from database import verify_user
 
 class LoginWindow(QDialog):
     def __init__(self):
@@ -39,8 +40,14 @@ class LoginWindow(QDialog):
         username = self.user_input.text()
         password = self.password_input.text()
 
-        print(f"Login attempt - Username: {username}, Password: {password}")
-
-        self.accept()
+        if not username or not password:
+            QMessageBox.warning(self, "Error", "Please enter both username and password")
+            return
+        
+        if verify_user(username, password):
+            QMessageBox.information(self, "Success", "Login successfully!")
+            self.accept()
+        else:
+            QMessageBox.warning(self, "Error", "Incorrect username or password")
 
 

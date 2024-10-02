@@ -5,6 +5,7 @@ import sys
 
 from sign_up_window import SignUpWindow
 from login_window import LoginWindow
+from database import create_users_table
 
 class FullScreenApp(QWidget):
     def __init__(self):
@@ -66,6 +67,7 @@ class FullScreenApp(QWidget):
 
 
 if __name__ == "__main__":
+    create_users_table()
     app = QApplication(sys.argv)
     window = FullScreenApp()
     window.show()
