@@ -3,6 +3,7 @@ from PySide6.QtGui import QKeyEvent
 from PySide6.QtCore import Qt
 import sys
 
+from sign_up_window import SignUpWindow
 
 class FullScreenApp(QWidget):
     def __init__(self):
@@ -44,6 +45,12 @@ class FullScreenApp(QWidget):
         self.layout.addWidget(self.central_label)
         self.layout.addSpacerItem(QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding))
         self.setLayout(self.layout)
+
+        self.signup_button.clicked.connect(self.open_signup_window)
+
+    def open_signup_window(self):
+        signup_window = SignUpWindow()
+        signup_window.exec()
 
     def keyPressEvent(self, event: QKeyEvent):
         if event.key() == Qt.Key_Escape:
