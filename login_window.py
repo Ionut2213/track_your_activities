@@ -3,6 +3,8 @@ from PySide6.QtWidgets import QDialog, QVBoxLayout, QLabel, QLineEdit, QPushButt
 
 from database import verify_user
 
+from dasboard_window import DashboardWindow
+
 class LoginWindow(QDialog):
     def __init__(self):
         super().__init__()
@@ -35,6 +37,7 @@ class LoginWindow(QDialog):
 
         self.setLayout(self.layout)
 
+        self.dashboard_window = None
 
     def handle_login(self):
         username = self.user_input.text()
@@ -46,8 +49,16 @@ class LoginWindow(QDialog):
         
         if verify_user(username, password):
             QMessageBox.information(self, "Success", "Login successfully!")
-            self.accept()
+            self.open_dashboard(username)
+
+
         else:
             QMessageBox.warning(self, "Error", "Incorrect username or password")
 
+
+    def open_dashboard(self, username):
+        self.dashboard_window = DashboardWindow(username)
+        self.dashboard_window.show()
+
+        self.close()
 
