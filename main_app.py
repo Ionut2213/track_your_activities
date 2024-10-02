@@ -4,6 +4,7 @@ from PySide6.QtCore import Qt
 import sys
 
 from sign_up_window import SignUpWindow
+from login_window import LoginWindow
 
 class FullScreenApp(QWidget):
     def __init__(self):
@@ -48,9 +49,16 @@ class FullScreenApp(QWidget):
 
         self.signup_button.clicked.connect(self.open_signup_window)
 
+        self.login_button.clicked.connect(self.open_login_window)
+    
+
     def open_signup_window(self):
         signup_window = SignUpWindow()
         signup_window.exec()
+
+    def open_login_window(self):
+        login_window = LoginWindow()
+        login_window.exec()
 
     def keyPressEvent(self, event: QKeyEvent):
         if event.key() == Qt.Key_Escape:
