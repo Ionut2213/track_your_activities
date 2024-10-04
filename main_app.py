@@ -6,6 +6,7 @@ from sign_up_window import SignUpWindow
 from login_window import LoginWindow
 from database import create_users_table
 from dasboard_window import DashboardWindow
+from PySide6.QtGui import QPalette, QBrush, QPixmap
 
 class FullScreenApp(QWidget):
     def __init__(self):
@@ -13,7 +14,7 @@ class FullScreenApp(QWidget):
 
         self.setWindowTitle("Aplicatie management task uri")
         self.showMaximized()
-        self.setStyleSheet("background-color: green;")
+        self.setStyleSheet("background-color:blue;")
 
         self.layout = QVBoxLayout()
 
@@ -40,6 +41,7 @@ class FullScreenApp(QWidget):
 
         self.signup_button.clicked.connect(self.open_signup_window)
         self.login_button.clicked.connect(self.open_login_window)
+
 
     def open_signup_window(self):
         signup_window = SignUpWindow()
