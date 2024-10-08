@@ -6,7 +6,6 @@ from sign_up_window import SignUpWindow
 from login_window import LoginWindow
 from database import create_users_table
 from dasboard_window import DashboardWindow
-from PySide6.QtGui import QPalette, QBrush, QPixmap
 
 class FullScreenApp(QWidget):
     def __init__(self):
