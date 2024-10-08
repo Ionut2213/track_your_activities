@@ -2,6 +2,8 @@ from PySide6.QtWidgets import QApplication, QWidget, QVBoxLayout, QLabel, QHBoxL
 from PySide6.QtCore import Qt
 
 
+from notes_window import NotesWindow
+
 class DashboardWindow(QWidget):
     def __init__(self, username):
         super().__init__()
@@ -29,6 +31,7 @@ class DashboardWindow(QWidget):
 
 
         self.notes_button = QPushButton("Notita")
+        self.notes_button.clicked.connect(self.open_notes)
         self.quizzes_button = QPushButton("Quiz-uri")
         self.tests_button = QPushButton("Teste Matematica")
 
@@ -76,10 +79,16 @@ class DashboardWindow(QWidget):
         
 
         
-        self.layout.addLayout(button_layout)
+        # self.layout.addLayout(button_layout)
 
-        layout.addLayout(button_layout)
+        # layout.addLayout(button_layout)
 
-        self.setLayout(layout)
+        # self.setLayout(layout)
 
         print("Dashboard initialized")
+
+    
+
+    def open_notes(self):
+        self.notes_window = NotesWindow()
+        self.notes_window.show()
